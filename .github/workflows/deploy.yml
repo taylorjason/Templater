@@ -3,28 +3,38 @@ name: Deploy React App to GitHub Pages
 on:
   push:
     branches:
-      - main  # or your default branch
+      - main  # deploy whenever you push to main
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Check out repo
       - uses: actions/checkout@v3
 
+      # 2. Set up Node.js
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
+      # 3. Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
+      # 4. Build React app
       - name: Build React App
         run: npm run build
 
-      - name: Deploy to GitHub Pages
+      # 5. Add SPA redirect support
+      - name: Add 404.html for SPA routing
+        run: |
+          cp build/index.html build/404.html
+
+      # 6. Deploy to GitHub Pages
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          publish_dir: ./build  
