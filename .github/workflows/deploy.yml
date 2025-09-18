@@ -31,7 +31,7 @@ jobs:
       # 5. Add SPA redirect support
       - name: Add 404.html for SPA routing
         run: |
-          cp build/index.html build/410.html
+          cp build/index.html build/404.html
 
       # 6. Deploy to GitHub Pages
       - name: Deploy
