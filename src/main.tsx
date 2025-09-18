@@ -8,7 +8,7 @@ import "./index.css"; // optional, your styles
 const root = document.getElementById("root");
 
 ReactDOM.createRoot(root!).render(
-  <BrowserRouter basename="/<repo-name>">
+  <BrowserRouter basename="/templater">
     <App />
   </BrowserRouter>
 );
