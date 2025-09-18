@@ -5,8 +5,10 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css"; // optional, your styles
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+const root = document.getElementById("root");
+
+ReactDOM.createRoot(root!).render(
+  <BrowserRouter basename="/<repo-name>">
     <App />
-  </React.StrictMode>
+  </BrowserRouter>
 );
